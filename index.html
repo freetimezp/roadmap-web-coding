@@ -1,18 +1,444 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#0b0d10" />
+        <meta
+            name="description"
+            content="A practical HTML, CSS and JavaScript learning roadmap with projects and skill checks."
+        />
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Project</title>
-</head>
+        <title>Codepath — Frontend Learning Roadmap</title>
 
-<body>
-    start
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
 
-    <script src="./assets/js/main.js"></script>
-</body>
+        <link rel="stylesheet" href="./assets/css/style.css" />
+    </head>
+    <body>
+        <div class="site-shell">
+            <aside class="sidebar" id="sidebar">
+                <a class="brand" href="#top" aria-label="Codepath home">
+                    <span class="brand-mark">
+                        <span></span><span></span><span></span>
+                    </span>
 
+                    <span class="brand-name">codepath<span>.</span></span>
+                </a>
+
+                <div class="sidebar-label">WORKSPACE</div>
+
+                <nav class="side-nav" aria-label="Main navigation">
+                    <a class="nav-link active" href="#top">
+                        <span class="nav-icon">◫</span>
+                    </a>
+
+                    <a class="nav-link" href="#roadmap">
+                        <span class="nav-icon">⌘</span> Learning roadmap
+                    </a>
+
+                    <a
+                        class="nav-link"
+                        href="#roadmap"
+                        data-category-link="HTML"
+                    >
+                        <span class="nav-icon">〈/〉</span> HTML
+                        <span class="nav-count">01</span>
+                    </a>
+
+                    <a
+                        class="nav-link"
+                        href="#roadmap"
+                        data-category-link="CSS"
+                    >
+                        <span class="nav-icon">✳</span> CSS
+                        <span class="nav-count">—</span>
+                    </a>
+
+                    <a
+                        class="nav-link"
+                        href="#roadmap"
+                        data-category-link="JavaScript"
+                    >
+                        <span class="nav-icon">JS</span> JavaScript
+                        <span class="nav-count">—</span>
+                    </a>
+                </nav>
+
+                <div class="sidebar-bottom">
+                    <div class="sidebar-note">
+                        <span class="note-dot"></span>
+
+                        <div>
+                            <strong>Built one lesson at a time.</strong>
+                            <p>
+                                A growing library of practical frontend skills.
+                            </p>
+                        </div>
+                    </div>
+
+                    <span class="sidebar-version">
+                        ROADMAP SYSTEM <span>v1.0</span>
+                    </span>
+                </div>
+            </aside>
+
+            <main class="main-content" id="top">
+                <header class="topbar">
+                    <button
+                        class="mobile-menu"
+                        id="mobileMenu"
+                        aria-label="Open navigation"
+                        aria-expanded="false"
+                    >
+                        <span></span><span></span>
+                    </button>
+
+                    <div class="breadcrumb">
+                        <span>Workspace</span>
+                        <i>/</i>
+                        <strong>Learning roadmap</strong>
+                    </div>
+
+                    <a class="topbar-link" href="#roadmap">
+                        Explore lessons <span>↘</span>
+                    </a>
+                </header>
+
+                <section class="hero section-wrap" aria-labelledby="hero-title">
+                    <div class="hero-copy">
+                        <div class="eyebrow">
+                            <span class="eyebrow-line"></span>
+                            THE FRONTEND LEARNING MAP
+                            <span class="eyebrow-index">001 — 1000+</span>
+                        </div>
+
+                        <h1 id="hero-title">
+                            Build your skills.<br />
+                            <span>One lesson at a time.</span>
+                        </h1>
+
+                        <p class="hero-description">
+                            A practical path through HTML, CSS and JavaScript.
+                            Learn with focused projects, then prove what you
+                            know with skill checks.
+                        </p>
+
+                        <div class="hero-actions">
+                            <a class="button button-primary" href="#roadmap">
+                                Explore the roadmap <span>↘</span>
+                            </a>
+
+                            <a class="text-link" href="#how-it-works">
+                                How it works <span>↓</span>
+                            </a>
+                        </div>
+
+                        <div class="hero-meta">
+                            <span class="live-dot"></span>
+                            FIRST LESSON AVAILABLE
+                            <span class="meta-divider">/</span>
+                            MORE LESSONS COMING
+                        </div>
+                    </div>
+
+                    <div class="hero-art" aria-hidden="true">
+                        <div class="orbit orbit-one"></div>
+                        <div class="orbit orbit-two"></div>
+
+                        <div class="art-card art-card-back">
+                            <span class="art-card-label">SKILL / 001</span>
+                            <span class="art-card-lines">
+                                <i></i><i></i><i></i>
+                            </span>
+                        </div>
+
+                        <div class="art-card art-card-front">
+                            <div class="art-card-top">
+                                <span>HTML</span><span class="art-dot"></span>
+                            </div>
+
+                            <div class="code-symbol">
+                                &lt;h<span>1</span>&gt;
+                            </div>
+
+                            <div class="art-word">Headings<span>.</span></div>
+
+                            <div class="art-card-bottom">
+                                <span>SEMANTIC STRUCTURE</span><span>↗</span>
+                            </div>
+                        </div>
+
+                        <div class="floating-tag tag-top">
+                            LEARN <span>↗</span>
+                        </div>
+
+                        <div class="floating-tag tag-bottom">
+                            <span class="tag-check">✓</span> TEST YOUR SKILLS
+                        </div>
+
+                        <div class="hero-art-index">
+                            FIG. 001<br />THE STARTING POINT
+                        </div>
+                    </div>
+                </section>
+
+                <section
+                    class="stats-row section-wrap"
+                    aria-label="Roadmap statistics"
+                >
+                    <div class="stat-item">
+                        <span class="stat-label">ROADMAP GOAL</span>
+                        <strong>1,000<span>+</span></strong>
+                        <span class="stat-caption">
+                            Practical lessons planned
+                        </span>
+                    </div>
+
+                    <div class="stat-item">
+                        <span class="stat-label">LEARNING FORMAT</span>
+                        <strong>02</strong>
+                        <span class="stat-caption">
+                            Project + skill check
+                        </span>
+                    </div>
+
+                    <div class="stat-item">
+                        <span class="stat-label">STARTING POINT</span>
+                        <strong>001</strong>
+                        <span class="stat-caption">HTML foundations</span>
+                    </div>
+
+                    <div class="stat-item stat-status">
+                        <span class="stat-label">CURRENT STATUS</span>
+                        <strong>
+                            <span class="status-dot"></span>In progress
+                        </strong>
+                        <span class="stat-caption">
+                            The map grows with every release
+                        </span>
+                    </div>
+                </section>
+
+                <section class="roadmap-section section-wrap" id="roadmap">
+                    <div class="section-heading">
+                        <div>
+                            <div class="eyebrow">
+                                <span class="eyebrow-line"></span> THE LIBRARY
+                            </div>
+
+                            <h2>Find your next <span>skill.</span></h2>
+
+                            <p class="section-description">
+                                Every lesson has a focused learning project and
+                                a separate skill check.
+                            </p>
+                        </div>
+
+                        <div class="roadmap-total">
+                            <strong id="lessonTotal">01</strong>
+                            <span>LESSON<br />AVAILABLE</span>
+                        </div>
+                    </div>
+
+                    <div class="toolbar">
+                        <label class="search-box">
+                            <span class="search-icon">⌕</span>
+                            <input
+                                id="searchInput"
+                                type="search"
+                                placeholder="Search lessons, topics, tags..."
+                                autocomplete="off"
+                            /><kbd>/</kbd>
+                        </label>
+
+                        <div class="toolbar-right">
+                            <label class="select-wrap">
+                                <span class="sr-only">Sort lessons</span>
+
+                                <select id="sortSelect">
+                                    <option value="asc">
+                                        Number: ascending
+                                    </option>
+                                    <option value="desc">
+                                        Number: descending
+                                    </option>
+                                    <option value="az">Title: A–Z</option>
+                                </select>
+
+                                <span>⌄</span>
+                            </label>
+
+                            <button
+                                class="filter-toggle"
+                                id="filterToggle"
+                                aria-expanded="false"
+                            >
+                                <span>☷</span> Filters
+                                <b id="filterCount">0</b>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="filter-panel" id="filterPanel" hidden>
+                        <div class="filter-group">
+                            <span class="filter-label">CATEGORY</span>
+
+                            <div
+                                class="filter-chips"
+                                id="categoryFilters"
+                            ></div>
+                        </div>
+
+                        <div class="filter-group">
+                            <span class="filter-label">STATUS</span>
+                            <div class="filter-chips" id="statusFilters"></div>
+                        </div>
+
+                        <button class="clear-filters" id="clearFilters">
+                            Clear all filters ↗
+                        </button>
+                    </div>
+
+                    <div
+                        class="category-tabs"
+                        id="categoryTabs"
+                        role="tablist"
+                        aria-label="Filter by category"
+                    >
+                        <button
+                            class="category-tab active"
+                            role="tab"
+                            aria-selected="true"
+                            data-category="All"
+                        >
+                            All lessons <span id="allCount">01</span>
+                        </button>
+
+                        <button
+                            class="category-tab"
+                            role="tab"
+                            aria-selected="false"
+                            data-category="HTML"
+                        >
+                            HTML <span>01</span>
+                        </button>
+
+                        <button
+                            class="category-tab"
+                            role="tab"
+                            aria-selected="false"
+                            data-category="CSS"
+                        >
+                            CSS <span>—</span>
+                        </button>
+
+                        <button
+                            class="category-tab"
+                            role="tab"
+                            aria-selected="false"
+                            data-category="JavaScript"
+                        >
+                            JavaScript <span>—</span>
+                        </button>
+                    </div>
+
+                    <div class="results-line">
+                        <span id="resultsLabel">
+                            Showing the first published lesson
+                        </span>
+                        <span class="results-view">
+                            <span class="view-dot"></span> CATALOG VIEW
+                        </span>
+                    </div>
+
+                    <div
+                        class="lesson-grid"
+                        id="lessonGrid"
+                        aria-live="polite"
+                    ></div>
+
+                    <div class="empty-state" id="emptyState" hidden>
+                        <div class="empty-icon">⌕</div>
+                        <h3>No lessons found</h3>
+                        <p>Try a different search or clear your filters.</p>
+
+                        <button class="button button-secondary" id="emptyReset">
+                            Reset search
+                        </button>
+                    </div>
+
+                    <div class="pagination" id="pagination"></div>
+                </section>
+
+                <section class="how-section section-wrap" id="how-it-works">
+                    <div class="how-heading">
+                        <div class="eyebrow">
+                            <span class="eyebrow-line"></span> SIMPLE BY DESIGN
+                        </div>
+
+                        <h2>
+                            Learn it. Try it.<br /><span>Make it yours.</span>
+                        </h2>
+                    </div>
+                    <div class="steps-grid">
+                        <article class="step-card">
+                            <span class="step-number">01 / LEARN</span>
+                            <div class="step-icon">↗</div>
+                            <h3>Open the lesson</h3>
+                            <p>
+                                Study one focused topic in its own learning
+                                project. Go at your own pace.
+                            </p>
+                        </article>
+
+                        <article class="step-card">
+                            <span class="step-number">02 / PRACTICE</span>
+                            <div class="step-icon">⌘</div>
+                            <h3>Test your knowledge</h3>
+                            <p>
+                                Open the separate skill check and answer
+                                questions to reinforce what you learned.
+                            </p>
+                        </article>
+
+                        <article class="step-card">
+                            <span class="step-number">03 / REPEAT</span>
+                            <div class="step-icon">↻</div>
+                            <h3>Keep moving forward</h3>
+                            <p>
+                                Return to the catalog and choose the next skill
+                                on your frontend journey.
+                            </p>
+                        </article>
+                    </div>
+                </section>
+
+                <footer class="footer section-wrap">
+                    <a class="brand footer-brand" href="#top">
+                        <span class="brand-mark">
+                            <span></span><span></span><span></span>
+                        </span>
+                        <span class="brand-name">codepath<span>.</span></span>
+                    </a>
+
+                    <span>MADE FOR CURIOUS BUILDERS.</span>
+                    <a href="#top">BACK TO TOP ↑</a>
+
+                    <span class="footer-copy">
+                        © <span id="year"></span> CODEPATH
+                    </span>
+                </footer>
+            </main>
+        </div>
+
+        <div class="mobile-overlay" id="mobileOverlay"></div>
+
+        <script type="module" src="./assets/js/main.js"></script>
+    </body>
 </html>
