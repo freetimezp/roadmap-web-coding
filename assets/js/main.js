@@ -84,33 +84,65 @@ function lessonCard(lesson, index) {
     const category = escapeHTML(lesson.category);
     const title = escapeHTML(lesson.title);
     const description = escapeHTML(lesson.description);
+
     const tags = (lesson.tags || [])
         .slice(0, 3)
         .map((tag) => `<span class="lesson-tag">${escapeHTML(tag)}</span>`)
         .join("");
+
     const preview = lesson.preview
-        ? `<img class="preview-image" src="${escapeHTML(lesson.preview)}" alt="" loading="lazy">`
+        ? `<img class="preview-image" 
+            src="${escapeHTML(lesson.preview)}" alt="" loading="lazy">`
         : `<div class="preview-art preview-${category.toLowerCase()}">
+
         <span class="preview-watermark">${categoryIcon(lesson.category)}</span>
         <span class="preview-kicker">LESSON / ${number}</span>
-        <span class="preview-code">${lesson.category === "HTML" ? "&lt;h1&gt;" : lesson.category === "CSS" ? "{ style }" : "const skill"}</span>
+        <span class="preview-code">${
+            lesson.category === "HTML"
+                ? "&lt;h1&gt;"
+                : lesson.category === "CSS"
+                  ? "{ style }"
+                  : "const skill"
+        }</span>
+
         <span class="preview-title">${title.replace(/&amp;/g, "&")}</span>
         <span class="preview-caption">FOUNDATIONS <i>↗</i></span>
       </div>`;
+
     return `
-    <article class="lesson-card" style="--card-index:${index}">
-      <div class="lesson-preview">${preview}<span class="lesson-number">${number}</span></div>
-      <div class="lesson-card-content">
-        <div class="lesson-card-meta"><span class="category-pill category-${category.toLowerCase()}">${categoryIcon(lesson.category)} <span>${category}</span></span><span class="difficulty">${escapeHTML(lesson.difficulty)}</span></div>
-        <h3>${title}</h3>
-        <p class="lesson-description">${description}</p>
-        <div class="lesson-tags">${tags}</div>
-        <div class="lesson-card-footer">
-          <a class="resource-link resource-learn" href="${escapeHTML(lesson.learningDemo || lesson.learningUrl)}" target="_blank" rel="noopener noreferrer"><span class="resource-icon">↗</span><span>Open lesson</span></a>
-          <a class="resource-link resource-test" href="${escapeHTML(lesson.testDemo || lesson.testUrl)}" target="_blank" rel="noopener noreferrer"><span class="resource-icon">✓</span><span>Skill check</span></a>
-        </div>
-      </div>
-    </article>`;
+        <article class="lesson-card" style="--card-index:${index}">
+            <div class="lesson-preview">
+                ${preview}<span class="lesson-number">${number}</span>
+            </div>
+
+            <div class="lesson-card-content">
+                <div class="lesson-card-meta">
+                    <span class="category-pill category-${category.toLowerCase()}">${categoryIcon(lesson.category)} 
+                        <span>${category}</span>
+                    </span>
+                    <span class="difficulty">${escapeHTML(lesson.difficulty)}</span>
+                </div>
+
+                <h3>${title}</h3>
+                <p class="lesson-description">${description}</p>
+                <div class="lesson-tags">${tags}</div>
+
+                <div class="lesson-card-footer">
+                    <a class="resource-link resource-learn" target="_blank" rel="noopener noreferrer"
+                        href="${escapeHTML(lesson.learningDemo || lesson.learningUrl)}">
+                            <span class="resource-icon">↗</span>
+                            <span>Open lesson</span>
+                    </a>
+
+                    <a class="resource-link resource-test" target="_blank" rel="noopener noreferrer"
+                        href="${escapeHTML(lesson.testDemo || lesson.testUrl)}">
+                            <span class="resource-icon">✓</span>
+                            <span>Skill check</span>
+                    </a>
+                </div>
+            </div>
+        </article>
+    `;
 }
 
 function renderCategoryTabs() {
@@ -122,14 +154,19 @@ function renderCategoryTabs() {
             ).length,
         ]),
     );
+
     $$("#categoryTabs [data-category]").forEach((tab) => {
         const category = tab.dataset.category;
+
         tab.classList.toggle("active", state.category === category);
         tab.setAttribute("aria-selected", String(state.category === category));
+
         const count = tab.querySelector("span");
+
         if (count)
             count.textContent = counts[category] ? pad(counts[category]) : "—";
     });
+
     $("#allCount").textContent = pad(publishedLessons.length);
 }
 
@@ -137,55 +174,101 @@ function renderFilterChips() {
     $("#categoryFilters").innerHTML = categories
         .map(
             (category) => `
-    <button class="filter-chip ${state.category === category ? "selected" : ""}" data-filter-category="${escapeHTML(category)}">${escapeHTML(category)}</button>
-  `,
+                <button class="filter-chip ${state.category === category ? "selected" : ""}" 
+                    data-filter-category="${escapeHTML(category)}">${escapeHTML(category)}
+                </button>
+            `,
         )
         .join("");
+
     $("#statusFilters").innerHTML = statuses
         .map(
             (status) => `
-    <button class="filter-chip ${state.status === status ? "selected" : ""}" data-filter-status="${escapeHTML(status)}">${status === "All" ? "All statuses" : status.replace("-", " ")}</button>
-  `,
+                <button class="filter-chip ${state.status === status ? "selected" : ""}" 
+                    data-filter-status="${escapeHTML(status)}">
+                        ${status === "All" ? "All statuses" : status.replace("-", " ")}
+                </button>
+            `,
         )
         .join("");
+
     const count =
         Number(state.category !== "All") + Number(state.status !== "All");
+
     $("#filterCount").textContent = count;
+
     filterToggle.classList.toggle("has-filters", count > 0);
 }
 
 function renderPagination(total) {
     const pages = Math.max(1, Math.ceil(total / state.perPage));
     state.page = Math.min(state.page, pages);
+
     if (total <= state.perPage) {
-        pagination.innerHTML = `<span class="pagination-summary">${total ? `Showing ${total} ${total === 1 ? "lesson" : "lessons"}` : "No results to show"}</span>`;
+        pagination.innerHTML = `
+            <span class="pagination-summary">
+                ${total ? `Showing ${total} ${total === 1 ? "lesson" : "lessons"}` : "No results to show"}
+            </span>`;
         return;
     }
+
     const pageButtons = Array.from({ length: pages }, (_, i) => {
         const page = i + 1;
-        return `<button class="page-number ${page === state.page ? "active" : ""}" data-page="${page}" aria-label="Page ${page}" ${page === state.page ? 'aria-current="page"' : ""}>${pad(page)}</button>`;
+
+        return `
+            <button class="page-number 
+                ${page === state.page ? "active" : ""}" 
+                data-page="${page}" aria-label="Page ${page}" 
+                ${page === state.page ? 'aria-current="page"' : ""}
+            >
+                    ${pad(page)}
+            </button>`;
     }).join("");
+
     pagination.innerHTML = `
-    <span class="pagination-summary">Showing <strong>${(state.page - 1) * state.perPage + 1}–${Math.min(state.page * state.perPage, total)}</strong> of <strong>${total}</strong></span>
-    <div class="pagination-controls"><button class="page-arrow" data-page="${state.page - 1}" ${state.page === 1 ? "disabled" : ""} aria-label="Previous page">←</button>${pageButtons}<button class="page-arrow" data-page="${state.page + 1}" ${state.page === pages ? "disabled" : ""} aria-label="Next page">→</button></div>`;
+        <span class="pagination-summary">
+            Showing <strong>
+                ${(state.page - 1) * state.perPage + 1}–${Math.min(state.page * state.perPage, total)}
+            </strong> of <strong>${total}</strong>
+        </span>
+
+        <div class="pagination-controls">
+            <button class="page-arrow" aria-label="Previous page"
+                data-page="${state.page - 1}" ${state.page === 1 ? "disabled" : ""}>
+                ←
+            </button>
+            ${pageButtons}
+            <button class="page-arrow" aria-label="Next page"
+                data-page="${state.page + 1}" ${state.page === pages ? "disabled" : ""}>
+                →
+            </button>
+        </div>
+    `;
 }
 
 function render() {
     const lessons = getFilteredLessons();
+
     const pages = Math.max(1, Math.ceil(lessons.length / state.perPage));
+
     if (state.page > pages) state.page = 1;
     const start = (state.page - 1) * state.perPage;
     const pageLessons = lessons.slice(start, start + state.perPage);
 
     grid.innerHTML = pageLessons.map(lessonCard).join("");
     grid.hidden = pageLessons.length === 0;
+
     emptyState.hidden = pageLessons.length !== 0;
 
     const total = lessons.length;
+
     $("#resultsLabel").textContent = total
-        ? `Showing ${start + 1}–${Math.min(start + state.perPage, total)} of ${total} ${total === 1 ? "lesson" : "lessons"}`
+        ? `Showing ${start + 1}–${Math.min(start + state.perPage, total)} of ${total} 
+            ${total === 1 ? "lesson" : "lessons"}`
         : "No matching lessons";
+
     $("#lessonTotal").textContent = pad(publishedLessons.length);
+
     renderCategoryTabs();
     renderFilterChips();
     renderPagination(total);
@@ -194,6 +277,7 @@ function render() {
 $("#categoryTabs").addEventListener("click", (event) => {
     const tab = event.target.closest("[data-category]");
     if (!tab) return;
+
     state.category = tab.dataset.category;
     state.page = 1;
     render();
@@ -232,16 +316,19 @@ searchInput.addEventListener("input", (event) => {
     state.page = 1;
     render();
 });
+
 sortSelect.addEventListener("change", (event) => {
     state.sort = event.target.value;
     state.page = 1;
     render();
 });
+
 filterToggle.addEventListener("click", () => {
     const opening = filterPanel.hidden;
     filterPanel.hidden = !opening;
     filterToggle.setAttribute("aria-expanded", String(opening));
 });
+
 $("#clearFilters").addEventListener("click", resetFilters);
 $("#emptyReset").addEventListener("click", resetFilters);
 
@@ -251,6 +338,7 @@ function resetFilters() {
     state.search = "";
     state.page = 1;
     searchInput.value = "";
+
     render();
 }
 
@@ -264,6 +352,7 @@ document.addEventListener("keydown", (event) => {
         event.preventDefault();
         searchInput.focus();
     }
+
     if (event.key === "Escape") {
         searchInput.blur();
         closeMobileMenu();
@@ -280,17 +369,20 @@ function openMobileMenu() {
     mobileMenu.setAttribute("aria-expanded", "true");
     document.body.classList.add("menu-open");
 }
+
 function closeMobileMenu() {
     sidebar.classList.remove("is-open");
     mobileOverlay.classList.remove("is-visible");
     mobileMenu.setAttribute("aria-expanded", "false");
     document.body.classList.remove("menu-open");
 }
+
 mobileMenu.addEventListener("click", () => {
     sidebar.classList.contains("is-open")
         ? closeMobileMenu()
         : openMobileMenu();
 });
+
 mobileOverlay.addEventListener("click", closeMobileMenu);
 $$(".side-nav a").forEach((link) =>
     link.addEventListener("click", closeMobileMenu),
@@ -298,6 +390,7 @@ $$(".side-nav a").forEach((link) =>
 
 const sections = $$("main section[id], main#top");
 const navLinks = $$(".side-nav a");
+
 if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
         (entries) => {
@@ -314,6 +407,7 @@ if ("IntersectionObserver" in window) {
         },
         { rootMargin: "-35% 0px -55% 0px" },
     );
+
     sections.forEach((section) => observer.observe(section));
 }
 
