@@ -41,6 +41,28 @@ export const roadmapData = [
         preview: "./assets/images/100/002-paragraph.jpg",
         tags: ["HTML", "Paragraph", "Semantic HTML", "Fundamentals"],
     },
+
+    {
+        id: 3,
+        number: "003",
+        title: "HTML Text highlight",
+        description:
+            "Learn to highlight meaningful text, change its color, and paint beautiful backgrounds with simple HTML and CSS.",
+        category: "HTML",
+
+        topic: "Fundamentals",
+        difficulty: "Beginner",
+        status: "published",
+
+        learningUrl: "https://github.com/freetimezp/school-003-text-highlight",
+        learningDemo: "https://freetimezp.github.io/school-003-text-highlight/",
+        testUrl: "https://github.com/freetimezp/skillscheck-003-text-highlight",
+        testDemo:
+            "https://freetimezp.github.io/skillscheck-003-text-highlight/",
+
+        preview: "./assets/images/100/003-text-highlight.jpg",
+        tags: ["HTML", "Paragraph", "Semantic HTML", "Fundamentals"],
+    },
 ];
 
 // Future entries can use status: "planned" or "in-progress".
