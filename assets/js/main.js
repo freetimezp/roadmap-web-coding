@@ -155,6 +155,7 @@ function renderCategoryTabs() {
         ]),
     );
 
+    //tabs count projects
     $$("#categoryTabs [data-category]").forEach((tab) => {
         const category = tab.dataset.category;
 
@@ -168,6 +169,16 @@ function renderCategoryTabs() {
     });
 
     $("#allCount").textContent = pad(publishedLessons.length);
+
+    // Keep sidebar counts synchronized with category tabs
+    $$(".side-nav [data-category-link]").forEach((link) => {
+        const category = link.dataset.categoryLink;
+        const count = link.querySelector(".nav-count");
+
+        if (count) {
+            count.textContent = counts[category] ? pad(counts[category]) : "—";
+        }
+    });
 }
 
 function renderFilterChips() {
@@ -268,6 +279,7 @@ function render() {
         : "No matching lessons";
 
     $("#lessonTotal").textContent = pad(publishedLessons.length);
+    $("#statLessonTotal").textContent = pad(publishedLessons.length);
 
     renderCategoryTabs();
     renderFilterChips();
@@ -388,28 +400,30 @@ $$(".side-nav a").forEach((link) =>
     link.addEventListener("click", closeMobileMenu),
 );
 
-const sections = $$("main section[id], main#top");
-const navLinks = $$(".side-nav a");
+// sidebar
 
-if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-                navLinks.forEach((link) => {
-                    const href = link.getAttribute("href");
-                    link.classList.toggle(
-                        "active",
-                        href === `#${entry.target.id}`,
-                    );
-                });
-            });
-        },
-        { rootMargin: "-35% 0px -55% 0px" },
-    );
+const navLinks = [...document.querySelectorAll(".side-nav .nav-link")];
 
-    sections.forEach((section) => observer.observe(section));
+function setActiveLink(linkToActivate) {
+    navLinks.forEach((link) => {
+        const isActive = link === linkToActivate;
+
+        link.classList.toggle("active", isActive);
+
+        if (isActive) {
+            link.setAttribute("aria-current", "location");
+        } else {
+            link.removeAttribute("aria-current");
+        }
+    });
 }
+
+// Handle clicks on sidebar links
+navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+        setActiveLink(link);
+    });
+});
 
 $("#year").textContent = new Date().getFullYear();
 render();

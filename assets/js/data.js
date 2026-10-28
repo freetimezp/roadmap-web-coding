@@ -63,6 +63,28 @@ export const roadmapData = [
         preview: "./assets/images/100/003-text-highlight.jpg",
         tags: ["HTML", "Paragraph", "Semantic HTML", "Fundamentals"],
     },
+
+    {
+        id: 4,
+        number: "004",
+        title: "HTML Custom Text selection",
+        description:
+            "A tiny interaction. A whole new feeling. Customize the colors people see when they select your text.",
+        category: "HTML",
+
+        topic: "Fundamentals",
+        difficulty: "Beginner",
+        status: "published",
+
+        learningUrl: "https://github.com/freetimezp/school-004-text-selection",
+        learningDemo: "https://freetimezp.github.io/school-004-text-selection/",
+        testUrl: "https://github.com/freetimezp/skillscheck-004-text-selection",
+        testDemo:
+            "https://freetimezp.github.io/skillscheck-004-text-selection/",
+
+        preview: "./assets/images/100/004-text-selection.jpg",
+        tags: ["HTML", "Paragraph", "Semantic HTML", "Fundamentals"],
+    },
 ];
 
 // Future entries can use status: "planned" or "in-progress".

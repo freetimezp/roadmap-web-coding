@@ -151,6 +151,12 @@ select:focus-visible {
     gap: 5px;
 }
 
+.side-nav a.active {
+    color: var(--accent);
+    background: var(--surface-hover);
+    border-color: var(--border);
+}
+
 .nav-link {
     display: flex;
     align-items: center;
@@ -834,7 +840,7 @@ select:focus-visible {
 .select-wrap select {
     max-width: 165px;
     appearance: none;
-    padding-right: 19px;
+    padding: 10px 20px 10px 10px;
     border: 0;
     outline: 0;
     background: transparent;
@@ -849,6 +855,7 @@ select:focus-visible {
 
 .select-wrap > span {
     position: absolute;
+    top: 5px;
     right: 11px;
     color: var(--accent);
     pointer-events: none;
