@@ -43,6 +43,33 @@ const escapeHTML = (value) =>
             })[char],
     );
 
+// sidebar
+
+const navLinks = [...document.querySelectorAll(".side-nav .nav-link")];
+
+function setActiveLink(linkToActivate) {
+    navLinks.forEach((link) => {
+        const isActive = link === linkToActivate;
+
+        link.classList.toggle("active", isActive);
+
+        if (isActive) {
+            link.setAttribute("aria-current", "location");
+        } else {
+            link.removeAttribute("aria-current");
+        }
+    });
+}
+
+// Handle clicks on sidebar links
+navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+        setActiveLink(link);
+    });
+});
+
+// Category
+
 function categoryIcon(category) {
     return { HTML: "&lt;/&gt;", CSS: "✳", JavaScript: "JS" }[category] || "⌘";
 }
@@ -292,6 +319,16 @@ $("#categoryTabs").addEventListener("click", (event) => {
 
     state.category = tab.dataset.category;
     state.page = 1;
+
+    // change active sidebar when we click on tab
+    navLinks.forEach((link) => {
+        link.classList.remove("active");
+
+        if (link.dataset.categoryLink === state.category) {
+            link.classList.add("active");
+        }
+    });
+
     render();
 });
 
@@ -399,31 +436,6 @@ mobileOverlay.addEventListener("click", closeMobileMenu);
 $$(".side-nav a").forEach((link) =>
     link.addEventListener("click", closeMobileMenu),
 );
-
-// sidebar
-
-const navLinks = [...document.querySelectorAll(".side-nav .nav-link")];
-
-function setActiveLink(linkToActivate) {
-    navLinks.forEach((link) => {
-        const isActive = link === linkToActivate;
-
-        link.classList.toggle("active", isActive);
-
-        if (isActive) {
-            link.setAttribute("aria-current", "location");
-        } else {
-            link.removeAttribute("aria-current");
-        }
-    });
-}
-
-// Handle clicks on sidebar links
-navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-        setActiveLink(link);
-    });
-});
 
 $("#year").textContent = new Date().getFullYear();
 render();
