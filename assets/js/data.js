@@ -85,6 +85,27 @@ export const roadmapData = [
         preview: "./assets/images/100/004-text-selection.jpg",
         tags: ["HTML", "Paragraph", "Semantic HTML", "Fundamentals"],
     },
+
+    {
+        id: 5,
+        number: "005",
+        title: "HTML Divider",
+        description:
+            "The smallest details can bring a layout together. Learn to separate ideas, define edges, and control the space between every element.",
+        category: "HTML",
+
+        topic: "Fundamentals",
+        difficulty: "Beginner",
+        status: "published",
+
+        learningUrl: "https://github.com/freetimezp/school-005-divider",
+        learningDemo: "https://freetimezp.github.io/school-005-divider/",
+        testUrl: "https://github.com/freetimezp/skillscheck-005-divider",
+        testDemo: "https://freetimezp.github.io/skillscheck-005-divider/",
+
+        preview: "./assets/images/100/005-divider.jpg",
+        tags: ["HTML", "Paragraph", "Semantic HTML", "Fundamentals"],
+    },
 ];
 
 // Future entries can use status: "planned" or "in-progress".
