@@ -43,6 +43,131 @@ const escapeHTML = (value) =>
             })[char],
     );
 
+/* =========================================
+   SHARED SKILL-CHECK PROGRESS
+========================================= */
+
+const SKILL_RESULTS_KEY = "freetimezp:roadmap:skill-check-results:v1";
+
+const trackedSkillChecks = roadmapData
+    .filter((lesson) => lesson.skillCheck?.enabled && lesson.testUrl)
+    .map((lesson) => ({
+        id: String(lesson.skillCheck.id ?? lesson.number).padStart(3, "0"),
+        title: lesson.skillCheck.title ?? lesson.title,
+        url: lesson.testDemo,
+    }));
+
+function readSkillResults() {
+    try {
+        const stored = localStorage.getItem(SKILL_RESULTS_KEY);
+
+        if (!stored) {
+            return { schemaVersion: 1, tests: {} };
+        }
+
+        const data = JSON.parse(stored);
+
+        if (!data || typeof data.tests !== "object" || !data.tests) {
+            return { schemaVersion: 1, tests: {} };
+        }
+
+        return data;
+    } catch (error) {
+        console.warn("Could not read skill-check results:", error);
+        return { schemaVersion: 1, tests: {} };
+    }
+}
+
+let skillResults = readSkillResults();
+
+function getSkillCheckResult(testId) {
+    const id = String(testId).padStart(3, "0");
+    return skillResults.tests?.[id] || null;
+}
+
+function renderProgressDashboard() {
+    const completed = trackedSkillChecks
+        .map((test) => ({
+            test,
+            result: getSkillCheckResult(test.id),
+        }))
+        .filter(({ result }) => result?.best);
+
+    const average = completed.length
+        ? Math.round(
+              completed.reduce(
+                  (sum, item) => sum + item.result.best.percentage,
+                  0,
+              ) / completed.length,
+          )
+        : null;
+
+    const attempts = trackedSkillChecks.reduce((sum, test) => {
+        const result = getSkillCheckResult(test.id);
+        return sum + (Number(result?.attempts) || 0);
+    }, 0);
+
+    document.querySelector("#progressChecksCompleted").textContent =
+        `${completed.length} / ${trackedSkillChecks.length}`;
+
+    document.querySelector("#progressAverageScore").textContent =
+        average === null ? "—" : `${average}%`;
+
+    document.querySelector("#progressTotalAttempts").textContent =
+        String(attempts);
+
+    document.querySelector("#progressTestList").innerHTML = trackedSkillChecks
+        .map((test) => {
+            const result = getSkillCheckResult(test.id);
+            const best = result?.best;
+
+            return `
+                    <a class="progress-test-item ${best ? "is-complete" : ""}"
+                        href="${escapeHTML(test.url)}"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        <span class="progress-test-info">
+                            <span class="progress-test-number">
+                                ${test.id}
+                            </span>
+                            <span class="progress-test-name">
+                                ${escapeHTML(test.title)}
+                                <small>
+                                    ${
+                                        result
+                                            ? `${result.attempts} attempt${
+                                                  result.attempts === 1
+                                                      ? ""
+                                                      : "s"
+                                              }`
+                                            : "Not attempted yet"
+                                    }
+                                </small>
+                            </span>
+                        </span>
+                        <span class="progress-test-score">
+                            ${best ? `BEST ${best.percentage}%` : "START ↗"}
+                        </span>
+                    </a>
+                `;
+        })
+        .join("");
+}
+
+// Refresh when the learner returns from a skill-check tab.
+window.addEventListener("focus", () => {
+    skillResults = readSkillResults();
+    renderProgressDashboard();
+});
+
+// Refresh automatically when another tab saves a result.
+window.addEventListener("storage", (event) => {
+    if (event.key === SKILL_RESULTS_KEY || event.key === null) {
+        skillResults = readSkillResults();
+        render();
+    }
+});
+
 // sidebar
 
 const navLinks = [...document.querySelectorAll(".side-nav .nav-link")];
@@ -112,6 +237,9 @@ function lessonCard(lesson, index) {
     const title = escapeHTML(lesson.title);
     const description = escapeHTML(lesson.description);
 
+    const testResult = getSkillCheckResult(number);
+    const bestScore = testResult?.best;
+
     const tags = (lesson.tags || [])
         .slice(0, 3)
         .map((tag) => `<span class="lesson-tag">${escapeHTML(tag)}</span>`)
@@ -153,6 +281,16 @@ function lessonCard(lesson, index) {
                 <h3>${title}</h3>
                 <p class="lesson-description">${description}</p>
                 <div class="lesson-tags">${tags}</div>
+
+                <div class="skill-result-badge ${
+                    bestScore ? "is-complete" : ""
+                }">
+                    ${
+                        bestScore
+                            ? `✓ BEST SCORE ${bestScore.percentage}%`
+                            : "○ SKILL CHECK NOT ATTEMPTED"
+                    }
+                </div>
 
                 <div class="lesson-card-footer">
                     <a class="resource-link resource-learn" target="_blank" rel="noopener noreferrer"
@@ -311,6 +449,7 @@ function render() {
     renderCategoryTabs();
     renderFilterChips();
     renderPagination(total);
+    renderProgressDashboard();
 }
 
 $("#categoryTabs").addEventListener("click", (event) => {

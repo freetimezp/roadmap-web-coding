@@ -1899,3 +1899,230 @@ select:focus-visible {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* =========================================
+   SKILL-CHECK PROGRESS DASHBOARD
+========================================= */
+
+.learning-progress {
+    padding-top: 52px;
+    padding-bottom: 60px;
+    border-top: 1px solid var(--border-color, #26302d);
+}
+
+.progress-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 26px;
+}
+
+.progress-heading h2 {
+    margin: 14px 0 10px;
+    font-size: clamp(30px, 4vw, 46px);
+    letter-spacing: -0.045em;
+}
+
+.progress-heading h2 > span {
+    color: var(--accent, #c8ff6b);
+}
+
+.progress-heading p {
+    max-width: 520px;
+    margin: 0;
+    color: var(--muted, #8c9690);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.progress-local-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    padding: 9px 12px;
+    border: 1px solid var(--border-color, #26302d);
+    color: var(--muted, #8c9690);
+    font-family: var(--mono, monospace);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+}
+
+.progress-local-badge > span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent, #c8ff6b);
+}
+
+.progress-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.progress-metric {
+    min-width: 0;
+    padding: 22px;
+    border: 1px solid var(--border-color, #26302d);
+    background: var(--surface, #111714);
+}
+
+.progress-metric > span,
+.progress-metric small {
+    display: block;
+    color: var(--muted, #8c9690);
+    font-family: var(--mono, monospace);
+    font-size: 9px;
+    letter-spacing: 0.06em;
+}
+
+.progress-metric strong {
+    display: block;
+    margin: 15px 0 8px;
+    font-size: clamp(25px, 3vw, 36px);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+}
+
+.progress-metric small {
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: 0;
+}
+
+.progress-test-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.progress-test-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid var(--border-color, #26302d);
+    background: transparent;
+    text-decoration: none;
+    transition:
+        border-color 180ms ease,
+        background 180ms ease,
+        transform 180ms ease;
+}
+
+.progress-test-item:hover {
+    border-color: var(--accent, #c8ff6b);
+    background: var(--surface, #111714);
+    transform: translateY(-2px);
+}
+
+.progress-test-info {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-width: 0;
+}
+
+.progress-test-number {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border-color, #26302d);
+    color: var(--muted, #8c9690);
+    font-family: var(--mono, monospace);
+    font-size: 10px;
+}
+
+.progress-test-name {
+    display: block;
+    min-width: 0;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.progress-test-name small {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted, #8c9690);
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.progress-test-score {
+    flex-shrink: 0;
+    color: var(--muted, #8c9690);
+    font-family: var(--mono, monospace);
+    font-size: 9px;
+    text-align: right;
+}
+
+.progress-test-item.is-complete .progress-test-number {
+    border-color: var(--accent, #c8ff6b);
+    color: var(--accent, #c8ff6b);
+}
+
+.progress-test-item.is-complete .progress-test-score {
+    color: var(--accent, #c8ff6b);
+}
+
+.skill-result-badge {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    max-width: 100%;
+    margin-top: 14px;
+    padding: 7px 9px;
+    border: 1px solid var(--border-color, #26302d);
+    color: var(--muted, #8c9690);
+    font-family: var(--mono, monospace);
+    font-size: 9px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.skill-result-badge.is-complete {
+    border-color: var(--accent, #c8ff6b);
+    color: var(--accent, #c8ff6b);
+}
+
+@media (max-width: 700px) {
+    .progress-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .progress-metrics {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .progress-metric {
+        padding: 18px;
+    }
+
+    .progress-metric strong {
+        margin: 10px 0 5px;
+    }
+
+    .progress-test-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .progress-test-item {
+        transition: none;
+    }
+
+    .progress-test-item:hover {
+        transform: none;
+    }
+}

@@ -19,6 +19,13 @@ export const roadmapData = [
 
         preview: "./assets/images/100/001-heading.jpg",
         tags: ["HTML", "Headings", "Semantic HTML", "Fundamentals"],
+
+        // skill test data
+        skillCheck: {
+            id: "001",
+            title: "HTML Headings",
+            enabled: true,
+        },
     },
 
     {
@@ -40,6 +47,13 @@ export const roadmapData = [
 
         preview: "./assets/images/100/002-paragraph.jpg",
         tags: ["HTML", "Paragraph", "Semantic HTML", "Fundamentals"],
+
+        // skill test data
+        skillCheck: {
+            id: "002",
+            title: "HTML Paragraph",
+            enabled: true,
+        },
     },
 
     {
@@ -62,6 +76,13 @@ export const roadmapData = [
 
         preview: "./assets/images/100/003-text-highlight.jpg",
         tags: ["HTML", "Paragraph", "Semantic HTML", "Fundamentals"],
+
+        // skill test data
+        skillCheck: {
+            id: "003",
+            title: "HTML Text Highlight",
+            enabled: true,
+        },
     },
 
     {
@@ -84,6 +105,13 @@ export const roadmapData = [
 
         preview: "./assets/images/100/004-text-selection.jpg",
         tags: ["HTML", "Paragraph", "Semantic HTML", "Fundamentals"],
+
+        // skill test data
+        skillCheck: {
+            id: "004",
+            title: "HTML Text Selection",
+            enabled: true,
+        },
     },
 
     {
@@ -105,6 +133,13 @@ export const roadmapData = [
 
         preview: "./assets/images/100/005-divider.jpg",
         tags: ["HTML", "Paragraph", "Semantic HTML", "Fundamentals"],
+
+        // skill test data
+        skillCheck: {
+            id: "005",
+            title: "HTML Divider",
+            enabled: true,
+        },
     },
 ];
 
