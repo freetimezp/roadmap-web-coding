@@ -104,7 +104,13 @@ export const roadmapData = [
             "https://freetimezp.github.io/skillscheck-004-text-selection/",
 
         preview: "./assets/images/100/004-text-selection.jpg",
-        tags: ["HTML", "Paragraph", "Semantic HTML", "Fundamentals"],
+        tags: [
+            "HTML",
+            "Paragraph",
+            "Semantic HTML",
+            "Fundamentals",
+            "Selection",
+        ],
 
         // skill test data
         skillCheck: {
@@ -132,12 +138,40 @@ export const roadmapData = [
         testDemo: "https://freetimezp.github.io/skillscheck-005-divider/",
 
         preview: "./assets/images/100/005-divider.jpg",
-        tags: ["HTML", "Paragraph", "Semantic HTML", "Fundamentals"],
+        tags: ["HTML", "Divider", "Semantic HTML", "Fundamentals"],
 
         // skill test data
         skillCheck: {
             id: "005",
             title: "HTML Divider",
+            enabled: true,
+        },
+    },
+
+    {
+        id: 6,
+        number: "006",
+        title: "HTML Links",
+        description:
+            "A link is more than a destination. Learn how to style its states, create expressive underlines, and make every interaction feel intentional.",
+        category: "HTML",
+
+        topic: "Fundamentals",
+        difficulty: "Beginner",
+        status: "published",
+
+        learningUrl: "https://github.com/freetimezp/school-006-links",
+        learningDemo: "https://freetimezp.github.io/school-006-links/",
+        testUrl: "https://github.com/freetimezp/skillscheck-006-links",
+        testDemo: "https://freetimezp.github.io/skillscheck-006-links/",
+
+        preview: "./assets/images/100/006-links.jpg",
+        tags: ["HTML", "Semantic HTML", "Fundamentals", "Links", "href"],
+
+        // skill test data
+        skillCheck: {
+            id: "006",
+            title: "HTML Links",
             enabled: true,
         },
     },
