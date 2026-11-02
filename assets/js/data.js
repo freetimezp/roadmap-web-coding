@@ -175,6 +175,34 @@ export const roadmapData = [
             enabled: true,
         },
     },
+
+    {
+        id: 7,
+        number: "007",
+        title: "HTML Underline",
+        description:
+            "A tiny detail can change the whole feeling of an interface. Build expressive underline animations with CSS pseudo-elements, transforms and transitions.",
+        category: "HTML",
+
+        topic: "Fundamentals",
+        difficulty: "Beginner",
+        status: "published",
+
+        learningUrl: "https://github.com/freetimezp/school-007-underline",
+        learningDemo: "https://freetimezp.github.io/school-007-underline/",
+        testUrl: "https://github.com/freetimezp/skillscheck-007-underline",
+        testDemo: "https://freetimezp.github.io/skillscheck-007-underline/",
+
+        preview: "./assets/images/100/007-underline.jpg",
+        tags: ["HTML", "Underline", "Semantic HTML", "Fundamentals"],
+
+        // skill test data
+        skillCheck: {
+            id: "007",
+            title: "HTML Underline",
+            enabled: true,
+        },
+    },
 ];
 
 // Future entries can use status: "planned" or "in-progress".
