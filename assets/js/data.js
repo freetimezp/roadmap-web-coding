@@ -203,6 +203,34 @@ export const roadmapData = [
             enabled: true,
         },
     },
+
+    {
+        id: 8,
+        number: "008",
+        title: "HTML Strikethrough",
+        description:
+            "Turn ordinary text into a visual statement. Learn semantic strikethrough, then animate decorative lines with a little CSS magic.",
+        category: "HTML",
+
+        topic: "Fundamentals",
+        difficulty: "Beginner",
+        status: "published",
+
+        learningUrl: "https://github.com/freetimezp/school-008-strikethrough",
+        learningDemo: "https://freetimezp.github.io/school-008-strikethrough/",
+        testUrl: "https://github.com/freetimezp/skillscheck-008-strikethrough",
+        testDemo: "https://freetimezp.github.io/skillscheck-008-strikethrough/",
+
+        preview: "./assets/images/100/008-strikethrough.jpg",
+        tags: ["HTML", "Strikethrough", "Semantic HTML", "Fundamentals"],
+
+        // skill test data
+        skillCheck: {
+            id: "008",
+            title: "HTML Strikethrough",
+            enabled: true,
+        },
+    },
 ];
 
 // Future entries can use status: "planned" or "in-progress".
