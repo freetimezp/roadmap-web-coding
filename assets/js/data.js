@@ -209,7 +209,7 @@ export const roadmapData = [
         number: "008",
         title: "HTML Strikethrough",
         description:
-            "Turn ordinary text into a visual statement. Learn semantic strikethrough, then animate decorative lines with a little CSS magic.",
+            "Strikethrough effect. Turn ordinary text into a visual statement. Learn semantic strikethrough, then animate decorative lines with a little CSS magic.",
         category: "HTML",
 
         topic: "Fundamentals",
