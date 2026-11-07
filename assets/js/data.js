@@ -231,6 +231,34 @@ export const roadmapData = [
             enabled: true,
         },
     },
+
+    {
+        id: 9,
+        number: "009",
+        title: "HTML Inline Flex",
+        description:
+            "Small inline elements, icons, labels, badges. Better alignment. Learn how icons and text work together, then use Flexbox to create clean, balanced interfaces.",
+        category: "HTML",
+
+        topic: "Fundamentals",
+        difficulty: "Beginner",
+        status: "published",
+
+        learningUrl: "https://github.com/freetimezp/school-009-inline",
+        learningDemo: "https://freetimezp.github.io/school-009-inline/",
+        testUrl: "https://github.com/freetimezp/skillscheck-009-inline",
+        testDemo: "https://freetimezp.github.io/skillscheck-009-inline/",
+
+        preview: "./assets/images/100/009-inline.jpg",
+        tags: ["HTML", "Flex", "Semantic HTML", "Fundamentals", "Inline"],
+
+        // skill test data
+        skillCheck: {
+            id: "009",
+            title: "HTML Inline Flex",
+            enabled: true,
+        },
+    },
 ];
 
 // Future entries can use status: "planned" or "in-progress".
