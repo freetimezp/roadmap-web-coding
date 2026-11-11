@@ -259,6 +259,41 @@ export const roadmapData = [
             enabled: true,
         },
     },
+
+    {
+        id: 10,
+        number: "010",
+        title: "HTML Image",
+        description:
+            "Images are more than just pictures. Learn how to display, resize and crop them beautifully with HTML and CSS.",
+        category: "HTML",
+
+        topic: "Fundamentals",
+        difficulty: "Beginner",
+        status: "published",
+
+        learningUrl: "https://github.com/freetimezp/school-010-image",
+        learningDemo: "https://freetimezp.github.io/school-010-image/",
+        testUrl: "https://github.com/freetimezp/skillscheck-010-image",
+        testDemo: "https://freetimezp.github.io/skillscheck-010-image/",
+
+        preview: "./assets/images/100/010-image.jpg",
+        tags: [
+            "HTML",
+            "Image",
+            "Semantic HTML",
+            "Fundamentals",
+            "Aspect ratio",
+            "Object fit",
+        ],
+
+        // skill test data
+        skillCheck: {
+            id: "010",
+            title: "HTML Image",
+            enabled: true,
+        },
+    },
 ];
 
 // Future entries can use status: "planned" or "in-progress".

@@ -1249,7 +1249,7 @@ select:focus-visible {
 }
 
 .lesson-description {
-    min-height: 38px;
+    min-height: 56px;
     margin: 0;
     color: #9299a2;
     font-size: 11px;
