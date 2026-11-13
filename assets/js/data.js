@@ -294,6 +294,41 @@ export const roadmapData = [
             enabled: true,
         },
     },
+
+    {
+        id: 11,
+        number: "011",
+        title: "HTML Circle",
+        description:
+            "A little circle can make a big difference. Learn how to shape images, crop portraits and create beautiful profile avatars with CSS.",
+        category: "HTML",
+
+        topic: "Fundamentals",
+        difficulty: "Beginner",
+        status: "published",
+
+        learningUrl: "https://github.com/freetimezp/school-011-circle",
+        learningDemo: "https://freetimezp.github.io/school-011-circle/",
+        testUrl: "https://github.com/freetimezp/skillscheck-011-circle",
+        testDemo: "https://freetimezp.github.io/skillscheck-011-circle/",
+
+        preview: "./assets/images/100/011-circle.jpg",
+        tags: [
+            "HTML",
+            "Circle",
+            "Image",
+            "Semantic HTML",
+            "Fundamentals",
+            "Border radius",
+        ],
+
+        // skill test data
+        skillCheck: {
+            id: "011",
+            title: "HTML Circle",
+            enabled: true,
+        },
+    },
 ];
 
 // Future entries can use status: "planned" or "in-progress".
