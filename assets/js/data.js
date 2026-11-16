@@ -329,6 +329,41 @@ export const roadmapData = [
             enabled: true,
         },
     },
+
+    {
+        id: 12,
+        number: "012",
+        title: "HTML Figure",
+        description:
+            "Learn how to connect images with meaningful captions using the semantic HTML elements figure and figcaption.",
+        category: "HTML",
+
+        topic: "Fundamentals",
+        difficulty: "Beginner",
+        status: "published",
+
+        learningUrl: "https://github.com/freetimezp/school-012-figure",
+        learningDemo: "https://freetimezp.github.io/school-012-figure/",
+        testUrl: "https://github.com/freetimezp/skillscheck-012-figure",
+        testDemo: "https://freetimezp.github.io/skillscheck-012-figure/",
+
+        preview: "./assets/images/100/012-figure.jpg",
+        tags: [
+            "HTML",
+            "Figure",
+            "Image",
+            "Semantic HTML",
+            "Fundamentals",
+            "Caption",
+        ],
+
+        // skill test data
+        skillCheck: {
+            id: "012",
+            title: "HTML Figure",
+            enabled: true,
+        },
+    },
 ];
 
 // Future entries can use status: "planned" or "in-progress".
