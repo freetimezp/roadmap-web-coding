@@ -364,6 +364,42 @@ export const roadmapData = [
             enabled: true,
         },
     },
+
+    {
+        id: 13,
+        number: "013",
+        title: "HTML Background",
+        description:
+            "Every element is a canvas. Learn how color, space and dimensions transform a simple block into a visual component.",
+        category: "HTML",
+
+        topic: "Fundamentals",
+        difficulty: "Beginner",
+        status: "published",
+
+        learningUrl: "https://github.com/freetimezp/school-013-background",
+        learningDemo: "https://freetimezp.github.io/school-013-background/",
+        testUrl: "https://github.com/freetimezp/skillscheck-013-background",
+        testDemo: "https://freetimezp.github.io/skillscheck-013-background/",
+
+        preview: "./assets/images/100/013-bg.jpg",
+        tags: [
+            "HTML",
+            "Background",
+            "Semantic HTML",
+            "Fundamentals",
+            "Block",
+            "Margin",
+            "Padding",
+        ],
+
+        // skill test data
+        skillCheck: {
+            id: "013",
+            title: "HTML Background",
+            enabled: true,
+        },
+    },
 ];
 
 // Future entries can use status: "planned" or "in-progress".
