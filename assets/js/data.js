@@ -368,10 +368,10 @@ export const roadmapData = [
     {
         id: 13,
         number: "013",
-        title: "HTML Background",
+        title: "CSS Background",
         description:
             "Every element is a canvas. Learn how color, space and dimensions transform a simple block into a visual component.",
-        category: "HTML",
+        category: "CSS",
 
         topic: "Fundamentals",
         difficulty: "Beginner",
@@ -385,6 +385,7 @@ export const roadmapData = [
         preview: "./assets/images/100/013-bg.jpg",
         tags: [
             "HTML",
+            "CSS",
             "Background",
             "Semantic HTML",
             "Fundamentals",
@@ -396,7 +397,7 @@ export const roadmapData = [
         // skill test data
         skillCheck: {
             id: "013",
-            title: "HTML Background",
+            title: "CSS Background",
             enabled: true,
         },
     },
@@ -404,7 +405,7 @@ export const roadmapData = [
     {
         id: 14,
         number: "014",
-        title: "HTML Border",
+        title: "CSS Border",
         description:
             "A border can be bold, subtle, playful or elegant. Explore how four simple styles transform the same element.",
         category: "CSS",
