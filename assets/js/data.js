@@ -400,6 +400,34 @@ export const roadmapData = [
             enabled: true,
         },
     },
+
+    {
+        id: 14,
+        number: "014",
+        title: "HTML Border",
+        description:
+            "A border can be bold, subtle, playful or elegant. Explore how four simple styles transform the same element.",
+        category: "CSS",
+
+        topic: "Fundamentals",
+        difficulty: "Beginner",
+        status: "published",
+
+        learningUrl: "https://github.com/freetimezp/school-014-border",
+        learningDemo: "https://freetimezp.github.io/school-014-border/",
+        testUrl: "https://github.com/freetimezp/skillscheck-014-border",
+        testDemo: "https://freetimezp.github.io/skillscheck-014-border/",
+
+        preview: "./assets/images/100/014-border.jpg",
+        tags: ["HTML", "CSS", "Border", "Semantic HTML", "Fundamentals"],
+
+        // skill test data
+        skillCheck: {
+            id: "014",
+            title: "CSS Border",
+            enabled: true,
+        },
+    },
 ];
 
 // Future entries can use status: "planned" or "in-progress".
