@@ -20,6 +20,8 @@ const sortSelect = $("#sortSelect");
 const filterPanel = $("#filterPanel");
 const filterToggle = $("#filterToggle");
 
+import { videoTutorials } from "./tutorials.js";
+
 const publishedLessons = roadmapData.filter(
     (lesson) => lesson.status === "published",
 );
@@ -110,6 +112,249 @@ function renderLatestProject() {
 
 // Run once when the application starts.
 renderLatestProject();
+
+/* =========================================
+   LEARNING HUB — TABS
+========================================= */
+
+const hubTabs = $$(".hub-tab");
+const hubPanels = $$(".hub-panel");
+
+function activateHubTab(tab, moveFocus = false) {
+    if (!tab) return;
+
+    const target = tab.dataset.tab;
+
+    hubTabs.forEach((item) => {
+        const isActive = item === tab;
+
+        item.classList.toggle("active", isActive);
+        item.setAttribute("aria-selected", String(isActive));
+        item.tabIndex = isActive ? 0 : -1;
+    });
+
+    hubPanels.forEach((panel) => {
+        const isActive = panel.dataset.panel === target;
+
+        panel.hidden = !isActive;
+    });
+
+    if (moveFocus) tab.focus();
+}
+
+hubTabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => {
+        activateHubTab(tab);
+    });
+
+    tab.addEventListener("keydown", (event) => {
+        let nextIndex = index;
+
+        if (event.key === "ArrowRight") {
+            nextIndex = (index + 1) % hubTabs.length;
+        } else if (event.key === "ArrowLeft") {
+            nextIndex = (index - 1 + hubTabs.length) % hubTabs.length;
+        } else if (event.key === "Home") {
+            nextIndex = 0;
+        } else if (event.key === "End") {
+            nextIndex = hubTabs.length - 1;
+        } else {
+            return;
+        }
+
+        event.preventDefault();
+        activateHubTab(hubTabs[nextIndex], true);
+    });
+});
+
+/* =========================================
+   VIDEO LIBRARY
+========================================= */
+
+const videoGrid = $("#videoGrid");
+const videoSearch = $("#videoSearch");
+const videoFilters = $("#videoFilters");
+const videoEmptyState = $("#videoEmptyState");
+const videoCounter = $(".videos-counter strong");
+
+const videoState = {
+    search: "",
+    category: "All",
+};
+
+function getFilteredVideos() {
+    return videoTutorials.filter((video) => {
+        const matchesCategory =
+            videoState.category === "All" ||
+            video.category === videoState.category;
+
+        const searchableText = [
+            video.title,
+            video.description,
+            video.category,
+            video.level,
+            ...(video.tags || []),
+        ]
+            .join(" ")
+            .toLowerCase();
+
+        const matchesSearch = searchableText.includes(
+            videoState.search.toLowerCase(),
+        );
+
+        return matchesCategory && matchesSearch;
+    });
+}
+
+function createVideoCard(video) {
+    const videoId = String(video.youtubeId || "").trim();
+
+    const validVideoId = /^[a-zA-Z0-9_-]{11}$/.test(videoId);
+
+    const thumbnail = validVideoId
+        ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+        : "";
+
+    const videoUrl = validVideoId
+        ? `https://www.youtube.com/watch?v=${videoId}`
+        : "";
+
+    const title = escapeHTML(video.title || "Untitled tutorial");
+    const description = escapeHTML(video.description || "");
+    const category = escapeHTML(video.category || "GENERAL");
+    const level = escapeHTML(video.level || "All levels");
+    const duration = escapeHTML(video.duration || "VIDEO");
+
+    const thumbnailContent = validVideoId
+        ? `
+            <img
+                src="${thumbnail}"
+                alt="${title}"
+                loading="lazy"
+            />
+            <span class="video-card-play" aria-hidden="true">▶</span>
+            <span class="video-card-duration">${duration}</span>
+        `
+        : `
+            <div class="video-placeholder">
+                <span>CODEPATH</span>
+                <strong>${category}</strong>
+                <small>VIDEO COMING SOON</small>
+            </div>
+        `;
+
+    return `
+        <article class="video-card">
+
+            ${
+                validVideoId
+                    ? `
+                        <a
+                            class="video-card-thumbnail"
+                            href="${videoUrl}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Watch ${title} on YouTube"
+                        >
+                            ${thumbnailContent}
+                        </a>
+                    `
+                    : `
+                        <div class="video-card-thumbnail">
+                            ${thumbnailContent}
+                        </div>
+                    `
+            }
+
+            <div class="video-card-body">
+
+                <div class="video-card-meta">
+                    <span class="video-card-category">${category}</span>
+                    <span class="video-card-level">${level}</span>
+                </div>
+
+                <h3 class="video-card-title">${title}</h3>
+
+                <p class="video-card-description">
+                    ${description}
+                </p>
+
+                ${
+                    validVideoId
+                        ? `
+                            <a
+                                class="video-card-link"
+                                href="${videoUrl}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                WATCH TUTORIAL <span>↗</span>
+                            </a>
+                        `
+                        : `
+                            <div class="video-card-link">
+                                COMING SOON <span>◷</span>
+                            </div>
+                        `
+                }
+
+            </div>
+        </article>
+    `;
+}
+
+function renderVideoLibrary() {
+    if (!videoGrid) return;
+
+    console.log(videoTutorials);
+
+    const filteredVideos = getFilteredVideos();
+
+    const cards = filteredVideos.map(createVideoCard).filter(Boolean);
+
+    videoGrid.innerHTML = cards.join("");
+
+    if (videoEmptyState) {
+        videoEmptyState.hidden = cards.length > 0;
+    }
+
+    if (videoCounter) {
+        videoCounter.textContent = String(videoTutorials.length).padStart(
+            2,
+            "0",
+        );
+    }
+}
+
+/* SEARCH */
+
+videoSearch?.addEventListener("input", (event) => {
+    videoState.search = event.target.value.trim();
+    renderVideoLibrary();
+});
+
+/* CATEGORY FILTERS */
+
+videoFilters?.addEventListener("click", (event) => {
+    const button = event.target.closest(".video-filter");
+
+    if (!button) return;
+
+    videoState.category = button.dataset.category || "All";
+
+    $$(".video-filter", videoFilters).forEach((filter) => {
+        const isActive = filter === button;
+
+        filter.classList.toggle("active", isActive);
+        filter.setAttribute("aria-pressed", String(isActive));
+    });
+
+    renderVideoLibrary();
+});
+
+/* INITIAL RENDER */
+
+renderVideoLibrary();
 
 /* =========================================
    WORKSPACE DRAWER

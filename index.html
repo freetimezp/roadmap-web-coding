@@ -284,53 +284,237 @@
                     </div>
                 </section>
 
-                <!-- SCORE -->
-                <section
-                    class="learning-progress section-wrap"
-                    id="learning-progress"
-                >
-                    <div class="progress-heading">
+                <!-- LEARNING HUB -->
+                <section class="learning-hub section-wrap" id="learning-hub">
+                    <!-- HUB HEADER -->
+                    <div class="hub-heading">
                         <div>
                             <div class="eyebrow">
                                 <span class="eyebrow-line"></span>
-                                YOUR PERSONAL DASHBOARD
+                                YOUR LEARNING SPACE
                             </div>
-                            <h2>Your progress<span>.</span></h2>
+
+                            <h2>Learning <span>hub.</span></h2>
+
                             <p>
-                                Every completed skill check brings you one step
-                                further. Your results are saved in this browser.
+                                Track your progress, explore tutorials and keep
+                                building your frontend skills.
                             </p>
                         </div>
-                        <span class="progress-local-badge">
-                            <span></span> SAVED LOCALLY
-                        </span>
+
+                        <div class="hub-index">
+                            <span>CODEPATH</span>
+                            <strong>001 <i>/</i> 002</strong>
+                        </div>
                     </div>
 
-                    <div class="progress-metrics">
-                        <article class="progress-metric">
-                            <span>CHECKS COMPLETED</span>
-                            <strong id="progressChecksCompleted">0 / 5</strong>
-                            <small>Across lessons 001–005</small>
-                        </article>
-
-                        <article class="progress-metric">
-                            <span>AVERAGE BEST SCORE</span>
-                            <strong id="progressAverageScore">—</strong>
-                            <small>Completed tests only</small>
-                        </article>
-
-                        <article class="progress-metric">
-                            <span>TOTAL ATTEMPTS</span>
-                            <strong id="progressTotalAttempts">0</strong>
-                            <small>Practice makes progress</small>
-                        </article>
-                    </div>
-
+                    <!-- HUB TABS -->
                     <div
-                        class="progress-test-list"
-                        id="progressTestList"
-                        aria-live="polite"
-                    ></div>
+                        class="hub-tabs"
+                        role="tablist"
+                        aria-label="Learning hub sections"
+                    >
+                        <button
+                            class="hub-tab active"
+                            id="progressTab"
+                            type="button"
+                            role="tab"
+                            aria-selected="true"
+                            aria-controls="progressPanel"
+                            tabindex="0"
+                            data-tab="progress"
+                        >
+                            <span class="hub-tab-icon">◷</span>
+                            <span class="hub-tab-content">
+                                <strong>My progress</strong>
+                                <small>Scores & activity</small>
+                            </span>
+                            <span class="hub-tab-arrow">↗</span>
+                        </button>
+
+                        <button
+                            class="hub-tab"
+                            id="videosTab"
+                            type="button"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="videosPanel"
+                            tabindex="-1"
+                            data-tab="videos"
+                        >
+                            <span class="hub-tab-icon">▷</span>
+                            <span class="hub-tab-content">
+                                <strong>Video tutorials</strong>
+                                <small>Watch & learn</small>
+                            </span>
+                            <span class="hub-tab-arrow">↗</span>
+                        </button>
+                    </div>
+
+                    <!-- PROGRESS PANEL -->
+                    <div
+                        class="hub-panel"
+                        id="progressPanel"
+                        role="tabpanel"
+                        aria-labelledby="progressTab"
+                        data-panel="progress"
+                    >
+                        <!-- SCORE -->
+                        <section
+                            class="learning-progress"
+                            id="learning-progress"
+                        >
+                            <div class="progress-heading">
+                                <div>
+                                    <div class="eyebrow">
+                                        <span class="eyebrow-line"></span>
+                                        YOUR PERSONAL DASHBOARD
+                                    </div>
+
+                                    <h2>Your progress<span>.</span></h2>
+
+                                    <p>
+                                        Every completed skill check brings you
+                                        one step further. Your results are saved
+                                        in this browser.
+                                    </p>
+                                </div>
+
+                                <span class="progress-local-badge">
+                                    <span></span> SAVED LOCALLY
+                                </span>
+                            </div>
+
+                            <div class="progress-metrics">
+                                <article class="progress-metric">
+                                    <span>CHECKS COMPLETED</span>
+                                    <strong id="progressChecksCompleted"
+                                        >0 / 5</strong
+                                    >
+                                    <small>Across lessons 001–005</small>
+                                </article>
+
+                                <article class="progress-metric">
+                                    <span>AVERAGE BEST SCORE</span>
+                                    <strong id="progressAverageScore">—</strong>
+                                    <small>Completed tests only</small>
+                                </article>
+
+                                <article class="progress-metric">
+                                    <span>TOTAL ATTEMPTS</span>
+                                    <strong id="progressTotalAttempts"
+                                        >0</strong
+                                    >
+                                    <small>Practice makes progress</small>
+                                </article>
+                            </div>
+
+                            <div
+                                class="progress-test-list"
+                                id="progressTestList"
+                                aria-live="polite"
+                            ></div>
+                        </section>
+                    </div>
+
+                    <!-- VIDEO PANEL -->
+                    <div
+                        class="hub-panel"
+                        id="videosPanel"
+                        role="tabpanel"
+                        aria-labelledby="videosTab"
+                        data-panel="videos"
+                        hidden
+                    >
+                        <div class="videos-heading">
+                            <div>
+                                <div class="eyebrow">
+                                    <span class="eyebrow-line"></span>
+                                    WATCH / PRACTICE / REPEAT
+                                </div>
+
+                                <h2>Learn by <span>watching.</span></h2>
+
+                                <p>
+                                    Video tutorials, practical demonstrations
+                                    and useful frontend knowledge.
+                                </p>
+                            </div>
+
+                            <span class="videos-counter">
+                                <strong>00</strong>
+                                <small>VIDEOS</small>
+                            </span>
+                        </div>
+
+                        <!-- VIDEO TOOLBAR -->
+                        <div class="videos-toolbar">
+                            <label class="video-search">
+                                <span>⌕</span>
+                                <input
+                                    type="search"
+                                    id="videoSearch"
+                                    placeholder="Search video tutorials..."
+                                    autocomplete="off"
+                                />
+                            </label>
+
+                            <div class="video-filters" id="videoFilters">
+                                <button
+                                    class="video-filter active"
+                                    data-category="All"
+                                    aria-pressed="true"
+                                >
+                                    All videos
+                                </button>
+
+                                <button
+                                    class="video-filter"
+                                    data-category="HTML"
+                                    aria-pressed="false"
+                                >
+                                    HTML
+                                </button>
+
+                                <button
+                                    class="video-filter"
+                                    data-category="CSS"
+                                    aria-pressed="false"
+                                >
+                                    CSS
+                                </button>
+
+                                <button
+                                    class="video-filter"
+                                    data-category="JavaScript"
+                                    aria-pressed="false"
+                                >
+                                    JavaScript
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- VIDEO GRID -->
+                        <div
+                            class="video-grid"
+                            id="videoGrid"
+                            aria-live="polite"
+                        ></div>
+
+                        <!-- EMPTY STATE -->
+                        <div
+                            class="video-empty-state"
+                            id="videoEmptyState"
+                            hidden
+                        >
+                            <span>▷</span>
+                            <h3>No tutorials found</h3>
+                            <p>
+                                Try another search or select a different
+                                category.
+                            </p>
+                        </div>
+                    </div>
                 </section>
 
                 <section class="roadmap-section section-wrap" id="roadmap">
