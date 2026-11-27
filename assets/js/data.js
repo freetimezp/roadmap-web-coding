@@ -429,6 +429,41 @@ export const roadmapData = [
             enabled: true,
         },
     },
+
+    {
+        id: 15,
+        number: "015",
+        title: "CSS Border radius",
+        description:
+            "From sharp corners to soft curves. Discover how one CSS property can completely change the personality of an element.",
+        category: "CSS",
+
+        topic: "Fundamentals",
+        difficulty: "Beginner",
+        status: "published",
+
+        learningUrl: "https://github.com/freetimezp/school-015-border-radius",
+        learningDemo: "https://freetimezp.github.io/school-015-border-radius/",
+        testUrl: "https://github.com/freetimezp/skillscheck-015-border-radius",
+        testDemo: "https://freetimezp.github.io/skillscheck-015-border-radius/",
+
+        preview: "./assets/images/100/015-border-radius.jpg",
+        tags: [
+            "HTML",
+            "CSS",
+            "Border",
+            "Border radius",
+            "Semantic HTML",
+            "Fundamentals",
+        ],
+
+        // skill test data
+        skillCheck: {
+            id: "015",
+            title: "CSS Border radius",
+            enabled: true,
+        },
+    },
 ];
 
 // Future entries can use status: "planned" or "in-progress".
