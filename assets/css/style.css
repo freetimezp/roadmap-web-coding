@@ -2126,3 +2126,581 @@ select:focus-visible {
         transform: none;
     }
 }
+
+/* =========================================
+   LATEST PROJECT SPOTLIGHT
+========================================= */
+
+.latest-project {
+    position: relative;
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    gap: 20px;
+    width: min(100%, 680px);
+    margin-top: 32px;
+    padding: 12px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(214, 255, 98, 0.07),
+            transparent 45%
+        ),
+        var(--panel);
+    transition:
+        border-color 250ms ease,
+        transform 250ms ease,
+        background 250ms ease;
+}
+
+.latest-project:hover {
+    border-color: rgba(214, 255, 98, 0.4);
+    transform: translateY(-3px);
+}
+
+.latest-project-image {
+    position: relative;
+    min-height: 158px;
+    overflow: hidden;
+    border-radius: 6px;
+    background: var(--panel-soft);
+}
+
+.latest-project-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 158px;
+    object-fit: cover;
+    object-position: 0 0;
+    transition: transform 500ms ease;
+}
+
+.latest-project:hover .latest-project-image img {
+    transform: scale(1.06);
+}
+
+.latest-project-number {
+    position: absolute;
+    right: 9px;
+    bottom: 9px;
+    padding: 5px 7px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 4px;
+    background: rgba(10, 12, 15, 0.8);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 9px;
+    backdrop-filter: blur(8px);
+}
+
+.latest-project-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    min-width: 0;
+    padding: 7px 10px 7px 0;
+}
+
+.latest-project-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+
+.latest-project-label .live-dot {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    margin-top: 0;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px rgba(214, 255, 98, 0.55);
+}
+
+.latest-project-category {
+    margin-top: 12px;
+    color: var(--muted-dark);
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.06em;
+}
+
+.latest-project-info h3 {
+    margin: 7px 0 5px;
+    font-size: clamp(16px, 1.7vw, 21px);
+    font-weight: 600;
+    letter-spacing: -0.7px;
+    line-height: 1.25;
+}
+
+.latest-project-info p {
+    max-width: 420px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.65;
+}
+
+.latest-project-info > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    transition: color 180ms ease;
+}
+
+.latest-project-info > a span {
+    color: var(--accent);
+    transition: transform 180ms ease;
+}
+
+.latest-project-info > a:hover {
+    color: var(--accent);
+}
+
+.latest-project-info > a:hover span {
+    transform: translate(3px, -3px);
+}
+
+/* =========================================
+   WORKSPACE TOGGLE
+========================================= */
+
+.workspace-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 36px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--panel);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+        border-color 180ms ease,
+        color 180ms ease,
+        background 180ms ease;
+}
+
+.workspace-toggle:hover,
+.workspace-toggle[aria-expanded="true"] {
+    border-color: rgba(214, 255, 98, 0.45);
+    color: var(--text);
+    background: var(--panel-soft);
+}
+
+.workspace-toggle-icon {
+    color: var(--accent);
+    font-size: 16px;
+    line-height: 1;
+}
+
+.workspace-toggle-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+/* =========================================
+   WORKSPACE DRAWER
+========================================= */
+
+.workspace-panel {
+    position: fixed;
+    inset: 0 0 0 auto;
+    z-index: 42;
+    display: flex;
+    flex-direction: column;
+    width: min(420px, 100%);
+    height: 100dvh;
+    padding: 30px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border-left: 1px solid var(--line);
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(214, 255, 98, 0.06),
+            transparent 35%
+        ),
+        #0e1115;
+    box-shadow: -25px 0 80px rgba(0, 0, 0, 0.35);
+    transform: translateX(105%);
+    visibility: hidden;
+    transition:
+        transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 350ms ease;
+}
+
+.workspace-panel[hidden] {
+    display: none;
+}
+
+.workspace-panel.is-open {
+    transform: translateX(0);
+    visibility: visible;
+}
+
+.workspace-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 27px;
+    border-bottom: 1px solid var(--line);
+}
+
+.workspace-eyebrow {
+    color: var(--muted-dark);
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+}
+
+.workspace-header h2 {
+    margin: 12px 0 0;
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: -1.8px;
+}
+
+.workspace-header h2 span {
+    color: var(--accent);
+}
+
+.workspace-close {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--panel);
+    color: var(--muted);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+        border-color 180ms ease,
+        color 180ms ease,
+        transform 180ms ease;
+}
+
+.workspace-close:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: rotate(90deg);
+}
+
+/* =========================================
+   WORKSPACE SECTIONS
+========================================= */
+
+.workspace-section {
+    padding: 25px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.workspace-section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+    color: var(--muted-dark);
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.07em;
+}
+
+.workspace-status {
+    padding: 5px 7px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    color: var(--muted);
+    font-size: 8px;
+}
+
+.workspace-placeholder {
+    position: relative;
+    min-height: 145px;
+    padding: 20px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background:
+        linear-gradient(135deg, rgba(214, 255, 98, 0.045), transparent 60%),
+        var(--panel);
+}
+
+.workspace-placeholder::after {
+    content: "";
+    position: absolute;
+    right: -35px;
+    bottom: -65px;
+    width: 150px;
+    height: 150px;
+    border: 1px solid rgba(214, 255, 98, 0.1);
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 18px rgba(214, 255, 98, 0.025),
+        0 0 0 38px rgba(214, 255, 98, 0.02);
+    pointer-events: none;
+}
+
+.workspace-placeholder-icon {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 18px;
+    border: 1px solid rgba(214, 255, 98, 0.25);
+    border-radius: 6px;
+    background: rgba(214, 255, 98, 0.06);
+    color: var(--accent);
+    font-size: 17px;
+}
+
+.workspace-placeholder h3 {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 7px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.4px;
+}
+
+.workspace-placeholder p {
+    position: relative;
+    z-index: 1;
+    max-width: 290px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.workspace-listen {
+    background:
+        linear-gradient(135deg, rgba(195, 161, 255, 0.08), transparent 65%),
+        var(--panel);
+}
+
+.workspace-listen .workspace-placeholder-icon {
+    border-color: rgba(195, 161, 255, 0.25);
+    background: rgba(195, 161, 255, 0.07);
+    color: var(--purple);
+}
+
+.workspace-featured {
+    background:
+        linear-gradient(135deg, rgba(214, 255, 98, 0.07), transparent 65%),
+        var(--panel);
+}
+
+.workspace-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 25px;
+    color: var(--muted-dark);
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 0.05em;
+}
+
+/* =========================================
+   WORKSPACE OVERLAY
+========================================= */
+
+.workspace-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 41;
+    background: rgba(0, 0, 0, 0.58);
+    backdrop-filter: blur(3px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 300ms ease,
+        visibility 300ms ease;
+}
+
+.workspace-overlay.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* =========================================
+   WORKSPACE RESPONSIVE
+========================================= */
+
+@media (max-width: 850px) {
+    .workspace-toggle {
+        min-height: 34px;
+        padding: 0 9px;
+        font-size: 10px;
+    }
+
+    .latest-project {
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 600px) {
+    .topbar {
+        gap: 8px;
+    }
+
+    .workspace-toggle {
+        gap: 6px;
+        min-height: 32px;
+        padding: 0 8px;
+        font-size: 9px;
+    }
+
+    .workspace-toggle-icon {
+        font-size: 14px;
+    }
+
+    .workspace-toggle-dot {
+        width: 5px;
+        height: 5px;
+    }
+
+    .latest-project {
+        grid-template-columns: 105px minmax(0, 1fr);
+        gap: 12px;
+        margin-top: 25px;
+        padding: 9px;
+    }
+
+    .latest-project-image,
+    .latest-project-image img {
+        min-height: 145px;
+    }
+
+    .latest-project-info {
+        padding: 5px 3px 5px 0;
+    }
+
+    .latest-project-category {
+        margin-top: 9px;
+        font-size: 8px;
+    }
+
+    .latest-project-info h3 {
+        font-size: 15px;
+    }
+
+    .latest-project-info p {
+        font-size: 10px;
+        line-height: 1.5;
+    }
+
+    .latest-project-info > a {
+        gap: 6px;
+        margin-top: 10px;
+        font-size: 8px;
+    }
+
+    .workspace-panel {
+        padding: 23px 20px;
+    }
+
+    .workspace-header h2 {
+        font-size: 30px;
+    }
+
+    .workspace-footer {
+        flex-wrap: wrap;
+        font-size: 7px;
+    }
+}
+
+@media (max-width: 380px) {
+    .latest-project {
+        grid-template-columns: 1fr;
+    }
+
+    .latest-project-image,
+    .latest-project-image img {
+        height: 145px;
+        min-height: 145px;
+    }
+
+    .latest-project-info {
+        padding: 8px 5px 7px;
+    }
+
+    .latest-project-info p {
+        max-width: none;
+    }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .latest-project,
+    .latest-project-image img,
+    .latest-project-info > a span,
+    .workspace-panel,
+    .workspace-overlay,
+    .workspace-close,
+    .workspace-toggle {
+        transition: none;
+    }
+
+    .latest-project:hover {
+        transform: none;
+    }
+
+    .latest-project:hover .latest-project-image img {
+        transform: none;
+    }
+
+    .workspace-close:hover {
+        transform: none;
+    }
+}
+
+/* Prevent background scrolling while workspace is open */
+body.workspace-open {
+    overflow: hidden;
+}
+
+/* Keep the drawer's close button accessible */
+.workspace-panel:focus {
+    outline: none;
+}
+
+/* Avoid displaying a broken or empty preview image */
+.latest-project-image img[hidden] {
+    display: none;
+}

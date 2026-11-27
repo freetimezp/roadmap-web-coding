@@ -105,6 +105,19 @@
                         <strong>Learning roadmap</strong>
                     </div>
 
+                    <button
+                        class="workspace-toggle"
+                        id="workspaceToggle"
+                        type="button"
+                        aria-label="Open workspace panel"
+                        aria-expanded="false"
+                        aria-controls="workspacePanel"
+                    >
+                        <span class="workspace-toggle-icon">◫</span>
+                        <span>Workspace</span>
+                        <span class="workspace-toggle-dot"></span>
+                    </button>
+
                     <a class="topbar-link" href="#roadmap">
                         Explore lessons <span>↘</span>
                     </a>
@@ -145,6 +158,52 @@
                             <span class="meta-divider">/</span>
                             MORE LESSONS COMING
                         </div>
+
+                        <!-- LATEST PROJECT -->
+                        <article class="latest-project" id="latestProject">
+                            <div class="latest-project-image">
+                                <img id="latestProjectImage" src="" alt="" />
+                                <span
+                                    class="latest-project-number"
+                                    id="latestProjectNumber"
+                                >
+                                    015
+                                </span>
+                            </div>
+
+                            <div class="latest-project-info">
+                                <div class="latest-project-label">
+                                    <span class="live-dot"></span>
+                                    LATEST RELEASE
+                                </div>
+
+                                <span
+                                    class="latest-project-category"
+                                    id="latestProjectCategory"
+                                >
+                                    CSS / FUNDAMENTALS
+                                </span>
+
+                                <h3 id="latestProjectTitle">
+                                    CSS Border radius
+                                </h3>
+
+                                <p id="latestProjectDescription">
+                                    From sharp corners to soft curves. Discover
+                                    how one CSS property can completely change
+                                    the personality of an element.
+                                </p>
+
+                                <a
+                                    href="#"
+                                    id="latestProjectLink"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    EXPLORE PROJECT <span>↗</span>
+                                </a>
+                            </div>
+                        </article>
                     </div>
 
                     <div class="hero-art" aria-hidden="true">
@@ -485,6 +544,89 @@
                 </footer>
             </main>
         </div>
+
+        <!-- RIGHT WORKSPACE PANEL -->
+        <aside
+            class="workspace-panel"
+            id="workspacePanel"
+            aria-labelledby="workspaceTitle"
+            hidden
+        >
+            <div class="workspace-header">
+                <div>
+                    <span class="workspace-eyebrow"> CODEPATH / EXTRA </span>
+
+                    <h2 id="workspaceTitle">Your space<span>.</span></h2>
+                </div>
+
+                <button
+                    class="workspace-close"
+                    id="workspaceClose"
+                    type="button"
+                    aria-label="Close workspace panel"
+                >
+                    ×
+                </button>
+            </div>
+
+            <!-- DISCOVER -->
+            <section class="workspace-section">
+                <div class="workspace-section-heading">
+                    <span>01 / DISCOVER</span>
+                    <span class="workspace-status">COMING SOON</span>
+                </div>
+
+                <div class="workspace-placeholder">
+                    <span class="workspace-placeholder-icon">✳</span>
+
+                    <h3>Fresh perspectives.</h3>
+
+                    <p>
+                        Developer news, interesting stories and selected
+                        resources.
+                    </p>
+                </div>
+            </section>
+
+            <!-- LISTEN -->
+            <section class="workspace-section">
+                <div class="workspace-section-heading">
+                    <span>02 / LISTEN</span>
+                    <span class="workspace-status">COMING SOON</span>
+                </div>
+
+                <div class="workspace-placeholder workspace-listen">
+                    <span class="workspace-placeholder-icon">♫</span>
+
+                    <h3>Focus mode.</h3>
+
+                    <p>Music and radio for your creative sessions.</p>
+                </div>
+            </section>
+
+            <!-- FEATURED -->
+            <section class="workspace-section">
+                <div class="workspace-section-heading">
+                    <span>03 / FEATURED</span>
+                    <span class="workspace-status">COMING SOON</span>
+                </div>
+
+                <div class="workspace-placeholder workspace-featured">
+                    <span class="workspace-placeholder-icon">↗</span>
+
+                    <h3>Made for builders.</h3>
+
+                    <p>Featured tools, brands and useful products.</p>
+                </div>
+            </section>
+
+            <div class="workspace-footer">
+                <span>AN EXTENSION OF YOUR WORKSPACE</span>
+                <span>CODEPATH © 2026</span>
+            </div>
+        </aside>
+
+        <div class="workspace-overlay" id="workspaceOverlay"></div>
 
         <div class="mobile-overlay" id="mobileOverlay"></div>
 

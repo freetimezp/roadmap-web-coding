@@ -44,6 +44,200 @@ const escapeHTML = (value) =>
     );
 
 /* =========================================
+   LATEST PROJECT SPOTLIGHT
+========================================= */
+
+function renderLatestProject() {
+    const spotlight = $("#latestProject");
+
+    if (!spotlight) return;
+
+    // Find the newest published lesson independently
+    // of the current catalog sorting and pagination.
+    const latestProject = roadmapData
+        .filter((lesson) => lesson.status === "published")
+        .sort((a, b) => Number(b.id) - Number(a.id))[0];
+
+    if (!latestProject) {
+        spotlight.hidden = true;
+        return;
+    }
+
+    const image = $("#latestProjectImage");
+    const number = $("#latestProjectNumber");
+    const category = $("#latestProjectCategory");
+    const title = $("#latestProjectTitle");
+    const description = $("#latestProjectDescription");
+    const link = $("#latestProjectLink");
+
+    if (image) {
+        if (latestProject.preview) {
+            image.src = latestProject.preview;
+            image.alt = `${latestProject.title} preview`;
+            image.hidden = false;
+        } else {
+            image.removeAttribute("src");
+            image.alt = "";
+            image.hidden = true;
+        }
+    }
+
+    if (number) {
+        number.textContent = latestProject.number;
+    }
+
+    if (category) {
+        category.textContent = `${latestProject.category} / ${latestProject.topic || "LESSON"}`;
+    }
+
+    if (title) {
+        title.textContent = latestProject.title;
+    }
+
+    if (description) {
+        description.textContent = latestProject.description;
+    }
+
+    if (link) {
+        link.href =
+            latestProject.learningDemo || latestProject.learningUrl || "#";
+
+        link.hidden = !latestProject.learningDemo && !latestProject.learningUrl;
+    }
+
+    spotlight.hidden = false;
+}
+
+// Run once when the application starts.
+renderLatestProject();
+
+/* =========================================
+   WORKSPACE DRAWER
+========================================= */
+
+const workspaceToggle = $("#workspaceToggle");
+const workspacePanel = $("#workspacePanel");
+const workspaceClose = $("#workspaceClose");
+const workspaceOverlay = $("#workspaceOverlay");
+
+let workspaceIsOpen = false;
+let workspaceReturnFocus = null;
+let workspaceCloseTimer = null;
+
+function openWorkspacePanel() {
+    if (!workspacePanel || !workspaceToggle || workspaceIsOpen) return;
+
+    // Close the mobile navigation if it is currently open.
+    if (typeof closeMobileMenu === "function") {
+        closeMobileMenu();
+    }
+
+    clearTimeout(workspaceCloseTimer);
+
+    workspaceReturnFocus = document.activeElement;
+    workspaceIsOpen = true;
+
+    // Remove hidden before starting the opening animation.
+    workspacePanel.hidden = false;
+
+    // Force the browser to register the initial hidden state.
+    workspacePanel.offsetHeight;
+
+    workspacePanel.classList.add("is-open");
+    workspaceOverlay?.classList.add("is-visible");
+
+    workspaceToggle.setAttribute("aria-expanded", "true");
+    workspaceToggle.setAttribute("aria-label", "Close workspace panel");
+
+    document.body.classList.add("workspace-open");
+
+    // Move keyboard focus into the drawer.
+    workspaceClose?.focus();
+}
+
+function closeWorkspacePanel({ restoreFocus = true } = {}) {
+    if (!workspacePanel || !workspaceIsOpen) return;
+
+    workspaceIsOpen = false;
+
+    workspacePanel.classList.remove("is-open");
+    workspaceOverlay?.classList.remove("is-visible");
+
+    workspaceToggle?.setAttribute("aria-expanded", "false");
+    workspaceToggle?.setAttribute("aria-label", "Open workspace panel");
+
+    document.body.classList.remove("workspace-open");
+
+    // Restore focus after the closing animation.
+    if (restoreFocus && workspaceReturnFocus instanceof HTMLElement) {
+        workspaceReturnFocus.focus();
+    }
+
+    workspaceCloseTimer = window.setTimeout(() => {
+        if (!workspaceIsOpen) {
+            workspacePanel.hidden = true;
+        }
+    }, 360);
+}
+
+// Open / close button
+workspaceToggle?.addEventListener("click", () => {
+    if (workspaceIsOpen) {
+        closeWorkspacePanel();
+    } else {
+        openWorkspacePanel();
+    }
+});
+
+// Close button inside the drawer
+workspaceClose?.addEventListener("click", () => {
+    closeWorkspacePanel();
+});
+
+// Close when clicking outside the drawer
+workspaceOverlay?.addEventListener("click", () => {
+    closeWorkspacePanel();
+});
+
+// Close with Escape and keep keyboard focus inside the drawer.
+document.addEventListener("keydown", (event) => {
+    if (!workspaceIsOpen || !workspacePanel) return;
+
+    if (event.key === "Escape") {
+        event.preventDefault();
+        closeWorkspacePanel();
+        return;
+    }
+
+    if (event.key === "Tab") {
+        const focusableElements = [
+            ...workspacePanel.querySelectorAll(
+                "a[href], button:not([disabled]), input:not([disabled]), " +
+                    "select:not([disabled]), textarea:not([disabled]), " +
+                    '[tabindex]:not([tabindex="-1"])',
+            ),
+        ].filter((element) => !element.hidden);
+
+        if (!focusableElements.length) {
+            event.preventDefault();
+            workspacePanel.focus();
+            return;
+        }
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (event.shiftKey && document.activeElement === firstElement) {
+            event.preventDefault();
+            lastElement.focus();
+        } else if (!event.shiftKey && document.activeElement === lastElement) {
+            event.preventDefault();
+            firstElement.focus();
+        }
+    }
+});
+
+/* =========================================
    SHARED SKILL-CHECK PROGRESS
 ========================================= */
 
@@ -544,6 +738,7 @@ document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
         searchInput.blur();
         closeMobileMenu();
+        closeWorkspacePanel();
     }
 });
 
