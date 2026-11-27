@@ -464,6 +464,34 @@ export const roadmapData = [
             enabled: true,
         },
     },
+
+    {
+        id: 16,
+        number: "016",
+        title: "CSS Box shadow",
+        description:
+            "A flat interface is just a beginning. Learn how shadows create elevation, softness, contrast, and a sense of space in modern UI design.",
+        category: "CSS",
+
+        topic: "Fundamentals",
+        difficulty: "Beginner",
+        status: "published",
+
+        learningUrl: "https://github.com/freetimezp/school-016-box-shadow",
+        learningDemo: "https://freetimezp.github.io/school-016-box-shadow/",
+        testUrl: "https://github.com/freetimezp/skillscheck-016-box-shadow",
+        testDemo: "https://freetimezp.github.io/skillscheck-016-box-shadow/",
+
+        preview: "./assets/images/100/016-box-shadow.jpg",
+        tags: ["HTML", "CSS", "Box shadow", "Semantic HTML", "Fundamentals"],
+
+        // skill test data
+        skillCheck: {
+            id: "016",
+            title: "CSS Box shadow",
+            enabled: true,
+        },
+    },
 ];
 
 // Future entries can use status: "planned" or "in-progress".
